@@ -14,3 +14,4 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
 	consola.success({ badge: true, message: `Servidor corriendo en puerto ${PORT}` });
 });
+// json-server -p 3001 --watch .\db.json
