@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const msmq = require('updated-node-msmq');
-const queue = msmq.openOrCreateQueue('.\\private$\\demo-arquitectura');
+// const queue = msmq.openOrCreateQueue('.\\private$\\demo-arquitectura');
+const queue = msmq.openOrCreateQueue('.\\private$\\arquitectura-fisi');
+//const queue = msmq.connectToRemoteQueue('FormatName:DIRECT=TCP:\\private$\\arquitectura-fisi');
+// const queue = msmq.connectToRemoteQueue('FormatName:DIRECT=TCP:192.168.1.67\\private$\\arquitectura-fisi');
 
-router.post('/sendMessage', (req, res) => {
+router.post('/sendMessage', async (req, res) => {
 	try {
-		queue.send(req.body);
+		// queue.send(req.body);
+		queue.send('Kioshi demooo');
 		res.status(201).json({ message: 'Se agrego producto correctamente', ok: true });
 	} catch (error) {
 		res.status(500).json({ message: 'Algo salio mal!', ok: false });
@@ -17,7 +21,7 @@ router.get('/viewAllMessages', (req, res) => {
 		const messages = queue.getAllMessages();
 		res.status(201).json({ content: messages, ok: true });
 	} catch (error) {
-		res.status(500).json({ message: 'Algo salio mal!', ok: false });
+		res.status(500).json({ message: `Algo salio mal!: ${error}`, ok: false });
 	}
 });
 router.get('/closeQueue', async (req, res) => {
