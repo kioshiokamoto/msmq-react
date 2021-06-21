@@ -1,3 +1,10 @@
 {
-	"msmq": []
+	"msmq": [
+		{
+			"id": "1238",
+			"descripcion": "Producto 1",
+			"precio": 1234,
+			"stock": 15
+		}
+	]
 }
