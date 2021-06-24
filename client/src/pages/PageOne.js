@@ -5,6 +5,7 @@ import { Box,Text, FormControl,
     Button,
     FormHelperText, Grid, Input, Select} from "@chakra-ui/react"
 import '../styles/stock.css'
+import DateTimePicker from 'react-datetime-picker';
 export default function PageOne() {
     const initialState = {
         code:'',
@@ -21,6 +22,13 @@ export default function PageOne() {
         setValues({
             ...values,
             [event.target.name]: event.target.value
+        })
+    }
+
+    const handleDateChange = ( e ) => {
+        setValues({
+            ...values,
+            date: e
         })
     }
     const handleReset = () => {
@@ -52,7 +60,13 @@ export default function PageOne() {
                         </FormControl>
                         <FormControl  p="10">
                             <FormLabel>Fecha de recepción</FormLabel>
-                            <Input type="date" placeholder="Seleccionar fecha" name="date" onChange={handleChange} value={date}/>
+                            {/* <Input type="date" placeholder="Seleccionar fecha" name="date" onChange={handleChange} value={date}/> */}
+                            <DateTimePicker
+                                className="datepicker-form"
+                                onChange={handleDateChange}
+                                value={date}
+                                format={"dd/MM/yyyy h:mm a"}
+                            />
                          
                         </FormControl>
                         <FormControl  p="10">
