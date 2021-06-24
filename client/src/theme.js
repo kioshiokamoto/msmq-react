@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react"
 import { ButtonStyles as Button } from "./styles/buttonStyle"
+import { SelectStyles as Select } from "./styles/selectStyle"
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createBreakpoints } from "@chakra-ui/theme-tools"
 const breakpoints = createBreakpoints({
@@ -12,12 +13,14 @@ const breakpoints = createBreakpoints({
 export const newTheme = extendTheme({
   breakpoints,
   colors: {
-    primary: "#482F51",
-    secondary: "#FBD76D",
-    highlight: "#00C9A7",
-    circleicons: "#E1E9F0"
+    primary: "#FDEDC4",
+    secondary: "#832361",
+    terciary: "#BA3089",
+    white: "#FFFF",
+    black: "#525252"
   },
   components: {
-    Button
+    Button,
+    Select,
   }
 })

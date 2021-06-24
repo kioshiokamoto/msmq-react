@@ -33,6 +33,19 @@ export const ButtonStyles = {
         boxShadow: "none"
       }
     },
+    terciary: {
+      bg: "terciary",
+      color: "#fff",
+      _hover: {
+        bg: darken("terciary", 20)
+      },
+      _active: {
+        transform: "scale(0.9)"
+      },
+      _focus: {
+        boxShadow: "none"
+      }
+    },
     light: {
       bg: "#FFF",
       color: "primary",
