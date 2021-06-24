@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Box,Text, FormControl,
     FormLabel,
-    Button, Grid, Input, Select} from "@chakra-ui/react"
+    Button, Grid, Input, Select, useToast} from "@chakra-ui/react"
 import '../styles/stock.css'
 import DateTimePicker from 'react-datetime-picker';
 import { http } from '../fetch';
 export default function PageOne() {
+    const toast = useToast()
     const initialState = {
         id:'',
         name:'',
@@ -38,6 +39,7 @@ export default function PageOne() {
         event.preventDefault()
         console.log(values)
         try {
+
             const res = await http('sendMessage',{ 
                 id:values.id,
                 name: values.name,
@@ -46,8 +48,15 @@ export default function PageOne() {
                 price:values.price,
                 stock:values.stock
             }, 'POST')
-            const data = await res.json()
-            console.log('response: ', data)
+            
+            toast({
+                title: "Producto",
+                description: "Se registro producto correctamente",
+                position:"top",
+                status: "success",
+                duration: 9000,
+                isClosable: true,
+              })
         }catch(err){
             console.log('Error msmq: ',err)
         }

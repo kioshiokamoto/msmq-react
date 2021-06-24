@@ -4,14 +4,11 @@ import "../styles/Report.css";
 import { http } from "../fetch";
 export default function PageTwo() {
   const [reports, setReports] = useState([])
-  // const [isClicked, setIsClicked] = useState(false)
 
   const handleClose = async() => {
     try {
       const res = await http('closeQueue')
       const data = await res.json()
-      console.log('response: ', data)
-      // setIsClicked(!isClicked)
     }catch(err){
         console.log('Error msmq: ',err)
     }
@@ -20,8 +17,6 @@ export default function PageTwo() {
     try {
       const res = await http('clearQueue')
       const data = await res.json()
-      console.log('response: ', data)
-      // setIsClicked(!isClicked)
     }catch(err){
         console.log('Error msmq: ',err)
     }
@@ -30,12 +25,9 @@ export default function PageTwo() {
     try {
       const res = await http('viewAllMessages')
       const data = await res.json()
-      console.log('response: ', data)
       const parseData = data.content.map( item => (JSON.parse(item.body)))
       setReports(parseData)
-      console.log('Parse response: ', parseData)
     }catch(err){
-        console.log('Error msmq: ',err)
     }
   } 
   useEffect(() => {

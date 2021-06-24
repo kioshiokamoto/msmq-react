@@ -8,10 +8,7 @@ export default function PageThree() {
         try {
           const res = await http('viewAllSavedMessages')
           const data = await res.json()
-          console.log('response: ', data)
-        //   const parseData = data.content.map( item => (JSON.parse(item.body)))
           setReportsGeneral(data.content)
-        //   console.log('Parse response: ', parseData)
         }catch(err){
             console.log('Error msmq: ',err)
         }

@@ -23,6 +23,30 @@
       "state": "badstate",
       "price": "0",
       "stock": "1"
+    },
+    {
+      "id": "5",
+      "name": "PC",
+      "date": "2021-06-19",
+      "state": "badstate",
+      "price": "12",
+      "stock": "15"
+    },
+    {
+      "id": "1563215",
+      "name": "Mouse",
+      "date": "2021-06-09",
+      "state": "goodstate",
+      "price": "16",
+      "stock": "589"
+    },
+    {
+      "id": "15",
+      "name": "Raton",
+      "date": "2021-06-09",
+      "state": "badstate",
+      "price": "25",
+      "stock": "15"
     }
   ]
 }
