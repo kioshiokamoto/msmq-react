@@ -1,7 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, Flex, Button, } from "@chakra-ui/react";
 import "../styles/Report.css";
+import { http } from "../fetch";
 export default function PageTwo() {
+  const [reports, setReports] = useState([])
+  // const [isClicked, setIsClicked] = useState(false)
+
+  const handleClose = async() => {
+    try {
+      const res = await http('closeQueue')
+      const data = await res.json()
+      console.log('response: ', data)
+      // setIsClicked(!isClicked)
+    }catch(err){
+        console.log('Error msmq: ',err)
+    }
+  }
+  const handleClean = async() => {
+    try {
+      const res = await http('clearQueue')
+      const data = await res.json()
+      console.log('response: ', data)
+      // setIsClicked(!isClicked)
+    }catch(err){
+        console.log('Error msmq: ',err)
+    }
+  }
+  const getMessage = async() => {
+    try {
+      const res = await http('viewAllMessages')
+      const data = await res.json()
+      console.log('response: ', data)
+      const parseData = data.content.map( item => (JSON.parse(item.body)))
+      setReports(parseData)
+      console.log('Parse response: ', parseData)
+    }catch(err){
+        console.log('Error msmq: ',err)
+    }
+  } 
+  useEffect(() => {
+    getMessage()
+  }, [handleClose, handleClean])
   return (
     <div className="ConteinerReportCierre">
         <Text align="left" justify="left" fontSize="4xl" color="terciary" p="4">
@@ -22,28 +61,34 @@ export default function PageTwo() {
               <th>Stock</th>
             </thead>
             <tbody className="TableBody">
-              {[
-                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 45, 46, 84, 78, 94,
-                45, 87, 9, 46, 46, 464, 2,
-              ].map((item) => {
+              {(reports.length !== 0) && reports?.map((item, index) => {
                 return (
                   <tr>
-                    <td>1</td>
-                    <td>P1234567</td>
-                    <td>Plancha</td>
-                    <td>24/06/21</td>
-                    <td>Buen Estado</td>
-                    <td>500</td>
-                    <td>20</td>
+                    <td>{index + 1}</td>
+                    <td>{item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{item.date}</td>
+                    <td>{item.state === 'goodstate' ? 'Buen estado' :'Mal estado'}</td>
+                    <td>{`S/. ${item.price}`}</td>
+                    <td>{item.stock}</td>
                   </tr>
                 );
               })}
+              {(reports.length === 0) && (
+                  <tr style={{textAlign:"center"}}>
+                    <td colspan="7" >Se cerró el reporte con los productos del día</td>
+                  </tr>
+                )
+              }
             </tbody>
           </table>
         </div>
         <Flex align="center" justify="center" my="8">
-          <Button variant="terciary" w="xs" type="submit">
+          <Button variant="terciary" w="xs" type="submit" onClick={handleClose} mx="2">
             Cerrar reporte
+          </Button>
+          <Button variant="terciary" w="xs" type="submit" onClick={handleClean} mx="2">
+            Eliminar reporte
           </Button>
         </Flex>
     </div>

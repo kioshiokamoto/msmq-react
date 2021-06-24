@@ -35,17 +35,17 @@ const msmqController = {
 		try {
 			queue.startReceiving();
 			queue.on('receive', ({ id, body }) => {
-				console.log({ id, body });
-				const { codigo, nombreProducto, fechaRecepcion, estado, precio, stock } = JSON.parse(body);
+				console.log('closeQueque: ',{ id, body });
+				const { id:uuid, name, date, state, price, stock } = JSON.parse(body);
 				fetch(`http://localhost:3001/msmq`, {
 					method: 'POST',
 					headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
 					body: JSON.stringify({
-						id: codigo,
-						nombreProducto: nombreProducto,
-						fechaRecepcion: fechaRecepcion,
-						estado: estado,
-						precio: precio,
+						id:uuid,
+						name:name,
+						date:date,
+						state:state,
+						price:price,
 						stock: stock,
 					}),
 				})

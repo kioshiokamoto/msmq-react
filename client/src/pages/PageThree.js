@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { Text } from "@chakra-ui/react"
 import "../styles/Report.css"
+import { http } from "../fetch";
 export default function PageThree() {
+    const [reportsGeneral, setReportsGeneral] = useState([])
+    const getMessageviewAllSaved = async() => {
+        try {
+          const res = await http('viewAllSavedMessages')
+          const data = await res.json()
+          console.log('response: ', data)
+        //   const parseData = data.content.map( item => (JSON.parse(item.body)))
+          setReportsGeneral(data.content)
+        //   console.log('Parse response: ', parseData)
+        }catch(err){
+            console.log('Error msmq: ',err)
+        }
+      } 
+      useEffect(() => {
+        getMessageviewAllSaved()
+      }, [])
     return (
         <div className="ConteinerReportCierre">
             <Text fontSize="4xl" color="terciary" p="4">Reporte General</Text>
@@ -18,19 +35,25 @@ export default function PageThree() {
                         <th>Stock</th>
                     </thead>
                     <tbody className="TableBody">
-                    { [1,2,3,4,5,6,7,8,9,10,11,12,13,45,46,84,78,94,45,87,9,46,46,464,2].map( item => {
+                    { (reportsGeneral.length !== 0) && reportsGeneral?.map( (item,index) => {
                         return (
                             <tr>
-                                <td>1</td>
-                                <td>P1234567</td>
-                                <td>Plancha</td>
-                                <td>24/06/21</td>
-                                <td>Buen Estado</td>
-                                <td>500</td>
-                                <td>20</td>
+                                <td>{index + 1}</td>
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.date}</td>
+                                <td>{item.state === 'goodstate' ? 'Buen estado' :'Mal estado'}</td>
+                                <td>{`S/. ${item.price}`}</td>
+                                <td>{item.stock}</td>
                             </tr>
                             )
                     })}
+                    {(reportsGeneral.length === 0) && (
+                        <tr style={{textAlign:"center"}}>
+                            <td colspan="7" >Se cerró el reporte general con los productos del día</td>
+                        </tr>
+                        )
+                    }
                     </tbody>
                 </table>
             </div>
