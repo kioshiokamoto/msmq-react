@@ -8,14 +8,16 @@
     flex-direction: column;
     overflow: visible;
     margin-left: 250px;
+    margin-bottom: 100px;
     /* background-color: red; */
 }
 
 .TableReport{
-    border: 1px solid black;
+    border-bottom: 7px solid #ddd;
     border-collapse: collapse;
     height: 10px;
     overflow: auto;
+    text-align: center;
 }
 
 .TableHead{
