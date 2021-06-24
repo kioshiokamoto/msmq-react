@@ -8,6 +8,7 @@ import {
 // import NotFound from "../pages/404";
 import PageOne from "../pages/PageOne";
 import PageTwo from "../pages/PageTwo";
+import PageThree from "../pages/PageThree";
 import Navbar from "../components/Navbar";
 
 export default function SourceRouter () {
@@ -18,7 +19,7 @@ export default function SourceRouter () {
             <Switch>
                 <Route path = "/pageTwo"  component = {PageTwo}/>
                 <Route exact path = "/" component = {PageOne} />
-                <Route exact path = "/pageThree" component = {PageOne} />
+                <Route exact path = "/pageThree" component = {PageThree} />
                 {/* <Route path="*">
                     <NotFound />
                 </Route> */}
