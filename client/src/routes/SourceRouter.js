@@ -18,6 +18,7 @@ export default function SourceRouter () {
             <Switch>
                 <Route path = "/pageTwo"  component = {PageTwo}/>
                 <Route exact path = "/" component = {PageOne} />
+                <Route exact path = "/pageThree" component = {PageOne} />
                 {/* <Route path="*">
                     <NotFound />
                 </Route> */}

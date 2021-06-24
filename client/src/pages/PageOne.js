@@ -4,7 +4,7 @@ export default function PageOne() {
     return (
         <div>
             <Text fontSize="6xl">PageOne</Text>
-            <Button colorScheme="blue">Button</Button>
+            <Button colorScheme="blue" variant="primary">Button</Button>
         </div>
     )
 }
