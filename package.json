@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"dev": "nodemon index.js",
+		"db": "json-server -p 3001 --watch ./db.json"
 	},
 	"keywords": [],
 	"author": "",
@@ -15,6 +16,10 @@
 		"dotenv": "^10.0.0",
 		"edge-js": "^15.5.2",
 		"express": "^4.17.1",
+		"node-fetch": "^2.6.1",
 		"updated-node-msmq": "^0.1.9"
+	},
+	"devDependencies": {
+		"json-server": "^0.16.3"
 	}
 }

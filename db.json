@@ -1,34 +1,10 @@
 {
-  "msmq": [
-    {
-      "codigo": "1",
-      "descripcion": "descripcion demo",
-      "precio": 500.5,
-      "stock": 13
-    },
-    {
-      "codigo": "2",
-      "descripcion": "descripcion demo",
-      "precio": 500.5,
-      "stock": 16
-    },
-    {
-      "codigo": "3",
-      "descripcion": "descripcion demo",
-      "precio": 500.5,
-      "stock": 12
-    },
-    {
-      "codigo": "4",
-      "descripcion": "descripcion demo",
-      "precio": 500.5,
-      "stock": 10
-    },
-    {
-      "descripcion": "Achis",
-      "id": "test",
-      "precio": 0.1,
-      "stock": 1000
-    }
-  ]
+	"msmq": [
+		{
+			"id": "1238",
+			"descripcion": "Producto 1",
+			"precio": 1234,
+			"stock": 15
+		}
+	]
 }
