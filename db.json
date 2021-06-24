@@ -1,10 +1,20 @@
 {
-	"msmq": [
-		{
-			"id": "1238",
-			"descripcion": "Producto 1",
-			"precio": 1234,
-			"stock": 15
-		}
-	]
+  "msmq": [
+    {
+      "id": "1238",
+      "name": "Licuadora",
+      "date": "2021-06-01",
+      "price": "200",
+      "state": "badstate",
+      "stock": 15
+    },
+    {
+      "id": "12346",
+      "name": "Ropero",
+      "date": "2021-06-01",
+      "state": "goodstate",
+      "price": "300",
+      "stock": "123"
+    }
+  ]
 }

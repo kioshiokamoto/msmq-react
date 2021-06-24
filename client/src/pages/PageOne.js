@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { Box,Text, FormControl,
     FormLabel,
-    FormErrorMessage,
-    Button,
-    FormHelperText, Grid, Input, Select} from "@chakra-ui/react"
+    Button, Grid, Input, Select} from "@chakra-ui/react"
 import '../styles/stock.css'
 import DateTimePicker from 'react-datetime-picker';
+import { http } from '../fetch';
 export default function PageOne() {
     const initialState = {
-        code:'',
+        id:'',
         name:'',
         date:'',
         state:'',
@@ -16,7 +15,7 @@ export default function PageOne() {
         stock:''
     }
     const [values, setValues] = useState(initialState)
-    const {code, name, date, state, price, stock} =values
+    const {id, name, date, state, price, stock} =values
 
     const handleChange = (event) => {
         setValues({
@@ -25,18 +24,33 @@ export default function PageOne() {
         })
     }
 
-    const handleDateChange = ( e ) => {
-        setValues({
-            ...values,
-            date: e
-        })
-    }
+    // const handleDateChange = ( e ) => {
+    //     setValues({
+    //         ...values,
+    //         date: e
+    //     })
+    // }
+
     const handleReset = () => {
         setValues(initialState)
     }
-    const handleSubmit = (event) =>{
+    const handleSubmit = async (event) =>{
         event.preventDefault()
         console.log(values)
+        try {
+            const res = await http('sendMessage',{ 
+                id:values.id,
+                name: values.name,
+                date:values.date,
+                state:values.state,
+                price:values.price,
+                stock:values.stock
+            }, 'POST')
+            const data = await res.json()
+            console.log('response: ', data)
+        }catch(err){
+            console.log('Error msmq: ',err)
+        }
         handleReset()
     }
 
@@ -48,28 +62,28 @@ export default function PageOne() {
                 <Text fontSize="xl" color="black" p="4">Ingrese los datos del producto </Text>
                 <form onSubmit={handleSubmit}>
                     <Grid templateColumns="repeat(2,1fr)" templateRows= "repeat(3,1fr)" gap="4">
-                        <FormControl p="10">
+                        <FormControl p="4">
                             <FormLabel>Codigo</FormLabel>
-                            <Input type="number" placeholder="P. ej. P123456" name="code" onChange={handleChange} value={code}/>
+                            <Input type="number" placeholder="P. ej. P123456" name="id" onChange={handleChange} value={id}/>
                         
                         </FormControl>
-                        <FormControl  p="10">
+                        <FormControl  p="4">
                             <FormLabel>Nombre del producto</FormLabel>
                             <Input type="text"placeholder="P. ej. Licuadora" name="name"onChange={handleChange} value={name}/>
                             
                         </FormControl>
-                        <FormControl  p="10">
+                        <FormControl  p="4">
                             <FormLabel>Fecha de recepción</FormLabel>
-                            {/* <Input type="date" placeholder="Seleccionar fecha" name="date" onChange={handleChange} value={date}/> */}
-                            <DateTimePicker
+                            <Input type="date" placeholder="Seleccionar fecha" name="date" onChange={handleChange} value={date}/>
+                            {/* <DateTimePicker
                                 className="datepicker-form"
                                 onChange={handleDateChange}
                                 value={date}
                                 format={"dd/MM/yyyy h:mm a"}
-                            />
+                            /> */}
                          
                         </FormControl>
-                        <FormControl  p="10">
+                        <FormControl  p="4">
                             <FormLabel>Estado</FormLabel>
                             <Select  placeholder="Seleccionar estado" variant="outline" name="state" onChange={handleChange} value={state}>
                                 <option value="badstate" style={{color:'var(--black)'}}>Mal estado</option>
@@ -77,17 +91,17 @@ export default function PageOne() {
                             </Select>
                             
                         </FormControl>
-                        <FormControl  p="10">
+                        <FormControl  p="4">
                             <FormLabel>Precio unitario (S/.)</FormLabel>
                             <Input type="number" placeholder="P. ej. 200" name="price" onChange={handleChange} value={price}/>
                           
                         </FormControl>
-                        <FormControl p="10">
+                        <FormControl p="4">
                             <FormLabel>Stock</FormLabel>
                             <Input type="number" placeholder="P. ej. 50" name="stock" onChange={handleChange} value={stock}/>
                            
                         </FormControl>
-                        <Box pl="10">
+                        <Box pl="4">
                             <Button variant="terciary" w="xs" type="submit">Guardar</Button>
                         </Box>
                     </Grid>
