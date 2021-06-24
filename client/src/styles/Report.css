@@ -1,0 +1,47 @@
+.ConteinerReportCierre{
+    height:100vh;
+    /* width:calc(100vw - 100px); */
+    width: calc(100vw - 250px);
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    overflow: visible;
+    margin-left: 250px;
+    /* background-color: red; */
+}
+
+.TableReport{
+    border: 1px solid black;
+    border-collapse: collapse;
+    height: 10px;
+    overflow: auto;
+}
+
+.TableHead{
+    background: #832361;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+
+    color: #FFFFFF;
+}
+
+.TableBody{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 22px;
+
+    color: #493F60;
+
+    overflow:auto;
+}
+
+.th, td{
+    padding: 20px;
+    width: 150px;
+}
