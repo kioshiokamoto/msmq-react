@@ -15,7 +15,6 @@ export default function PageTwo() {
     }
   }
   const handleClean =async() => {
-    getMessage()
     try {
       const res = await http('clearQueue')
       const data = await res.json()
