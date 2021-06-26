@@ -47,6 +47,38 @@
       "state": "badstate",
       "price": "25",
       "stock": "15"
+    },
+    {
+      "id": "12346",
+      "name": "Licuadora",
+      "date": "2021-06-15",
+      "state": "goodstate",
+      "price": "12",
+      "stock": "23"
+    },
+    {
+      "id": "121548",
+      "name": "Lavadora",
+      "date": "2021-06-18",
+      "state": "badstate",
+      "price": "200",
+      "stock": "115"
+    },
+    {
+      "id": "65161",
+      "name": "Koichi",
+      "date": "2021-06-11",
+      "state": "goodstate",
+      "price": "32",
+      "stock": "54"
+    },
+    {
+      "id": "15648",
+      "name": "Libro",
+      "date": "2021-06-24",
+      "state": "badstate",
+      "price": "18",
+      "stock": "489"
     }
   ]
 }

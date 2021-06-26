@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import { Text, Flex, Button, } from "@chakra-ui/react";
 import "../styles/Report.css";
 import { http } from "../fetch";
@@ -9,14 +9,17 @@ export default function PageTwo() {
     try {
       const res = await http('closeQueue')
       const data = await res.json()
+      getMessage()
     }catch(err){
         console.log('Error msmq: ',err)
     }
   }
-  const handleClean = async() => {
+  const handleClean =async() => {
+    getMessage()
     try {
       const res = await http('clearQueue')
       const data = await res.json()
+      getMessage()
     }catch(err){
         console.log('Error msmq: ',err)
     }
@@ -29,10 +32,10 @@ export default function PageTwo() {
       setReports(parseData)
     }catch(err){
     }
-  } 
+  }
   useEffect(() => {
     getMessage()
-  }, [handleClose, handleClean])
+  }, [])
   return (
     <div className="ConteinerReportCierre">
         <Text align="left" justify="left" fontSize="4xl" color="terciary" p="4">

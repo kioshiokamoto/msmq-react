@@ -35,7 +35,7 @@ const msmqController = {
 		try {
 			queue.startReceiving();
 			queue.on('receive', ({ id, body }) => {
-				console.log('closeQueque: ',{ id, body });
+				console.log('closeQueque: ',{ id });
 				const { id:uuid, name, date, state, price, stock } = JSON.parse(body);
 				fetch(`http://localhost:3001/msmq`, {
 					method: 'POST',
@@ -50,7 +50,7 @@ const msmqController = {
 					}),
 				})
 					.then((res) => res.json())
-					.then((json) => console.log(json));
+					
 			});
 
 			res.status(201).json({ message: 'Se guardaron datos correctamente', ok: true });
